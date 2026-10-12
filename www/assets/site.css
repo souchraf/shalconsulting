@@ -148,3 +148,4 @@ h1,h2,h3,p{margin:0}
 .at{fill:var(--accent)}
 .it{fill:var(--ink)}
 .st{fill:var(--soft)}
+.mark-card{display:block;flex-shrink:0}
