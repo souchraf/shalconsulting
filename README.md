@@ -10,7 +10,7 @@ Site statique (HTML/CSS/JS) en production sur https://shal-consulting.fr/, hébe
 
 ## Déploiement automatique
 
-Chaque `push` sur `main` qui modifie `www/` envoie le dossier sur l'hébergement OVH par FTP(S),
+Chaque `push` sur `main` qui modifie `www/` envoie le dossier sur l'hébergement OVH par FTP,
 puis vérifie que `/`, `/conseil/` et `/formation/` répondent en 200.
 Lancement manuel possible : onglet **Actions → Déploiement OVH → Run workflow**.
 
@@ -28,7 +28,7 @@ Variables optionnelles (onglet *Variables*) :
 
 | Variable | Défaut | Rôle |
 |---|---|---|
-| `OVH_FTP_PROTOCOL` | `ftps` | mettre `ftp` si la connexion TLS échoue |
+| `OVH_FTP_PROTOCOL` | `ftp` | OVH mutualisé ne gère pas FTPS |
 | `OVH_FTP_PORT` | `21` | |
 | `OVH_REMOTE_DIR` | `./www/` | dossier racine du domaine sur l'hébergement (avec `/` final) |
 
