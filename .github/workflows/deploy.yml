@@ -35,10 +35,13 @@ jobs:
           dangerous-clean-slate: false
 
       - name: Vérification du site en ligne
+        continue-on-error: true
         run: |
           sleep 5
+          fail=0
           for p in / /conseil/ /formation/; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' "https://shal-consulting.fr$p")
+            code=$(curl -sL -A "Mozilla/5.0 (deploy-check)" -o /dev/null -w '%{http_code}' "https://shal-consulting.fr$p")
             echo "$p -> $code"
-            [ "$code" = "200" ] || exit 1
+            if [ "$code" != "200" ]; then echo "::warning::$p a répondu $code"; fail=1; fi
           done
+          exit $fail
