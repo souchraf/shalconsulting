@@ -1,0 +1,12 @@
+name: Diagnostic cache
+on: workflow_dispatch
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for u in "https://shal-consulting.fr/" "https://shal-consulting.fr/index.html" "https://shal-consulting.fr/?r=$RANDOM" "https://www.shal-consulting.fr/"; do
+            h=$(curl -sL -A "Mozilla/5.0" "$u" | grep -o '<h1[^>]*>[^<]*' | head -1)
+            hd=$(curl -sIL -A "Mozilla/5.0" "$u" | grep -iE '^(server|x-cdn|x-cache|age|cache-control|last-modified|x-iplb|x-ovh)' | tr '\r\n' '  ')
+            echo "::warning::$u => $h || $hd"
+          done
