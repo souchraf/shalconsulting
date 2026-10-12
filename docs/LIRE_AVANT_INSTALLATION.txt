@@ -1,0 +1,91 @@
+SOUFIANE AOURAS — VERSION PRÊTE POUR OVHCLOUD
+Préparée le 8 octobre 2026.
+
+Cette archive contient le site personnel bleu nuit et cuivre : Expérience,
+Conseil freelance et Formation. Elle est destinée à un hébergement Web OVHcloud
+servant des fichiers HTML, CSS et JavaScript, à la racine d'un domaine ou sous-domaine.
+Les trois pages, l'illustration et les polices sont incluses.
+Aucune compilation, aucune installation de dépendances ni base de données.
+
+1. DÉCOMPRESSER L'ARCHIVE SUR TON ORDINATEUR
+
+Ouvre le dossier www. Il contient :
+- index.html : la page Expérience ;
+- conseil/index.html : la page Conseil freelance ;
+- formation/index.html : la page Formation ;
+- assets : l'image, les polices, la feuille de style et le script ;
+- .htaccess : la configuration Apache pour OVHcloud.
+
+2. REPÉRER LE DOSSIER ASSOCIÉ À TON DOMAINE
+
+Dans l'espace client OVHcloud, sélectionne ton hébergement Web.
+Vérifie le dossier racine associé au domaine choisi (souvent www).
+Les noms de domaine et les dossiers racines sont visibles dans la rubrique
+de gestion des sites ou domaines de l'hébergement.
+
+Le fichier index.html doit être directement dans ce dossier racine.
+Exemple : si le dossier racine est www, le chemin sera www/index.html.
+Si un ancien site occupe déjà ce dossier, fais-en une copie avant remplacement.
+Pour tester à côté de l'ancien site, utilise un autre dossier et associe-lui
+un sous-domaine depuis l'espace client OVHcloud.
+
+3. SE CONNECTER AUX FICHIERS DE L'HÉBERGEMENT
+
+Dans Web Cloud > Hébergements > ton hébergement > FTP - SSH, récupère :
+le serveur, l'identifiant FTP et le port. Utilise le mot de passe de cet utilisateur.
+Installe FileZilla Client depuis https://filezilla-project.org/.
+Connecte-toi avec ces informations : FTP utilise le port 21 ; SFTP utilise
+le port 22 lorsqu'il est activé sur ton offre.
+
+4. TRANSFÉRER LES FICHIERS
+
+Dans FileZilla, ouvre à droite le dossier racine repéré à l'étape 2.
+À gauche, ouvre le dossier www de cette archive.
+Transfère TOUT SON CONTENU, y compris assets, conseil, formation et .htaccess.
+Attends la fin des transferts et vérifie qu'aucun transfert n'a échoué.
+
+Ne crée pas un deuxième dossier www à l'intérieur du premier :
+le résultat attendu est www/index.html, et non www/www/index.html.
+Ce guide reste sur ton ordinateur ; seul le contenu de www est à transférer.
+Le fichier .htaccess peut être masqué par l'explorateur de ton ordinateur :
+active l'affichage des fichiers masqués pour vérifier qu'il est bien transféré.
+
+5. VÉRIFIER LE DOMAINE ET HTTPS
+
+Si le domaine était déjà associé au bon hébergement, garde cette association.
+Pour un nouveau domaine, associe-le à cet hébergement et fais pointer sa zone DNS
+vers les adresses d'hébergement fournies par OVHcloud.
+Active ou vérifie le certificat SSL du domaine dans ton espace client.
+La configuration livrée n'impose pas de redirection HTTPS avant cette activation.
+
+Ouvre ensuite ton domaine en HTTPS et vérifie :
+- la page d'accueil et l'illustration ;
+- /conseil/ et /formation/ ;
+- le menu sur téléphone ;
+- les liens vers l'adresse e-mail et LinkedIn.
+
+6. INFOS UTILES
+
+Le site est configuré pour un domaine ou sous-domaine à sa racine, pas pour une
+adresse de type domaine.fr/soufiane/. Un dossier interne nommé soufiane fonctionne
+si le domaine ou sous-domaine est associé directement à ce dossier.
+Le site devient accessible aux visiteurs dès que le domaine pointe sur ces fichiers.
+La restriction privée de la version ChatGPT ne s'applique pas à cet export OVH.
+Le lien e-mail ouvre l'application de messagerie du visiteur ; il n'y a pas de
+formulaire ni de serveur d'envoi de messages dans cette version.
+La préparation a été vérifiée localement ; aucun fichier n'a été envoyé sur OVH.
+
+Pour modifier les textes : édite les trois fichiers index.html.
+Pour modifier les couleurs ou les espacements : édite assets/site.css.
+Conserve assets/font-licenses avec les polices.
+
+DOCUMENTATION OVHCLOUD CONSULTÉE
+
+Accès FTP :
+https://docs.ovhcloud.com/en/guides/web-cloud/web-hosting/ftp-connection
+Dossier racine et page index :
+https://docs.ovhcloud.com/it/guides/web-cloud/web-hosting/diagnostic-index-of
+Configuration .htaccess :
+https://docs.ovhcloud.com/en/guides/web-cloud/web-hosting/htaccess-what-else-can-you-do
+Certificat SSL :
+https://docs.ovhcloud.com/en/guides/web-cloud/web-hosting/diagnostic-not-secured

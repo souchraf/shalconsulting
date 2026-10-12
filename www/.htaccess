@@ -1,0 +1,4 @@
+# Site personnel Soufiane Aouras - OVHcloud / Apache
+# Conserver ce fichier dans le dossier racine du site.
+DirectoryIndex index.html
+Options -Indexes

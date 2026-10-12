@@ -1,0 +1,44 @@
+name: Déploiement OVH
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "www/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-ovh
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://shal-consulting.fr/
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Envoi du dossier www/ sur l'hébergement OVH
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.OVH_FTP_SERVER }}
+          username: ${{ secrets.OVH_FTP_USERNAME }}
+          password: ${{ secrets.OVH_FTP_PASSWORD }}
+          protocol: ${{ vars.OVH_FTP_PROTOCOL || 'ftps' }}
+          port: ${{ vars.OVH_FTP_PORT || 21 }}
+          local-dir: ./www/
+          server-dir: ${{ vars.OVH_REMOTE_DIR || './www/' }}
+          # Ne supprime sur le serveur que les fichiers que ce workflow a lui-même envoyés.
+          dangerous-clean-slate: false
+
+      - name: Vérification du site en ligne
+        run: |
+          sleep 5
+          for p in / /conseil/ /formation/; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://shal-consulting.fr$p")
+            echo "$p -> $code"
+            [ "$code" = "200" ] || exit 1
+          done

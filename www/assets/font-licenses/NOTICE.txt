@@ -1,0 +1,11 @@
+Polices URW Base35
+Source : https://github.com/ArtifexSoftware/urw-base35-fonts
+Copyright 2015 URW Software; 2013, 2014 (URW)++ Design & Development.
+Licence : GNU AGPL version 3 avec exception pour les polices, texte inclus.
+Les fichiers originaux OTF sont inclus dans ce dossier.
+Adaptation du 8 octobre 2026 : conversion de conteneur OTF vers WOFF avec fontTools,
+sans modification des glyphes. Les polices restent sous leur licence d'origine.
+Correspondances :
+NimbusSans-Regular.otf : ../sans-regular.woff (nom CSS Atlas, poids 400)
+NimbusSans-Bold.otf : ../sans-bold.woff (nom CSS Atlas, poids 700)
+P052-Italic.otf : ../serif-italic.woff (nom CSS Editorial, italique)
